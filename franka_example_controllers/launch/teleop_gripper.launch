@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <launch>
   <arg name="robot_id" />
-  <arg name="leader_ip" />
-  <arg name="follower_ip" />
+  <arg name="leader_ip" default="172.16.0.2" />
+  <arg name="follower_ip" default="172.16.0.3" />
   <arg name="leader_id" default="panda_1" />
   <arg name="follower_id" default="panda_2" />
   <arg name="gripper_homed" default="false" />
