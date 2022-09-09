@@ -65,7 +65,7 @@ void JointPositionExampleController::starting(const ros::Time& /* time */) {
 void JointPositionExampleController::update(const ros::Time& /*time*/,
                                             const ros::Duration& period) {
   elapsed_time_ += period;
-  ros::Duration duration = ros::Duration(42.6*3+0.5*60);
+  ros::Duration duration = ros::Duration(42.6*3+60);
   // ROS_ERROR("Elapsed Time: %f", elapsed_time_.toSec());
   double T = 10.0;
 
@@ -96,12 +96,12 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
   // }
 
   double w_1 = 3 * M_PI / 180 * (std::sin(0.20 * 2 * M_PI * (elapsed_time_.toSec())));
-  double w_2 = 3 * M_PI / 180 * (std::sin(0.50 * 2 * M_PI * (-15.0 + elapsed_time_.toSec())));
-  double w_3 = 3 * M_PI / 180 * (std::sin(1.00 * 2 * M_PI * (-23.0 + elapsed_time_.toSec())));
-  double w_4 = 3 * M_PI / 180 * (std::sin(1.25 * 2 * M_PI * (-28.0 + elapsed_time_.toSec())));
-  double w_5 = 3 * M_PI / 180 * (std::sin(2.00 * 2 * M_PI * (-32.8 + elapsed_time_.toSec())));
-  double w_6 = 3 * M_PI / 180 * (std::sin(2.50 * 2 * M_PI * (-37.8 + elapsed_time_.toSec())));
-  double w_7 = 3 * M_PI / 180 * (std::sin(3.20 * 2 * M_PI * (-42.6 + elapsed_time_.toSec())));
+  double w_2 = 3 * M_PI / 180 * (std::sin(0.50 * 2 * M_PI * (-15.0 - 1*1 + elapsed_time_.toSec())));
+  double w_3 = 3 * M_PI / 180 * (std::sin(1.00 * 2 * M_PI * (-23.0 - 1*2 + elapsed_time_.toSec())));
+  double w_4 = 3 * M_PI / 180 * (std::sin(1.25 * 2 * M_PI * (-28.0 - 1*3 + elapsed_time_.toSec())));
+  double w_5 = 3 * M_PI / 180 * (std::sin(2.00 * 2 * M_PI * (-32.8 - 1*4 + elapsed_time_.toSec())));
+  double w_6 = 3 * M_PI / 180 * (std::sin(2.50 * 2 * M_PI * (-37.8 - 1*5 + elapsed_time_.toSec())));
+  double w_7 = 3 * M_PI / 180 * (std::sin(3.20 * 2 * M_PI * (-42.6 - 1*6 + elapsed_time_.toSec())));
 
   double w_1_2 = 3 * M_PI / 180 * (std::sin(0.20 * 2 * M_PI * (elapsed_time_.toSec())));
   double w_2_2 = 3 * M_PI / 180 * (std::sin(0.50 * 2 * M_PI * (-15.0 - 42.6 + elapsed_time_.toSec())));
@@ -128,7 +128,13 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
         position_joint_handles_[i].setCommand(initial_pose_[i]);
       }
     }
-  } else if (elapsed_time_.toSec() <= 23){
+  } else if (elapsed_time_.toSec() < (15+1))
+  {
+    ROS_ERROR("Time: %f", elapsed_time_.toSec());
+    for (size_t i = 0; i < 7; ++i) {
+        position_joint_handles_[i].setCommand(initial_pose_[i]);
+    }
+  } else if (elapsed_time_.toSec() <= 23+1){
     ROS_ERROR("Time: %f, Delta Angle: %f", elapsed_time_.toSec(), w_2);
     for (size_t i = 0; i < 7; ++i) {
       if (i == 4) {
@@ -137,7 +143,13 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
         position_joint_handles_[i].setCommand(initial_pose_[i]);
       }
     }
-  } else if (elapsed_time_.toSec() <= 28){
+  } else if (elapsed_time_.toSec() < (23+1*2))
+  {
+    ROS_ERROR("Time: %f", elapsed_time_.toSec()); 
+    for (size_t i = 0; i < 7; ++i) {
+        position_joint_handles_[i].setCommand(initial_pose_[i]);
+    }
+  } else if (elapsed_time_.toSec() <= 28+1*2){
     ROS_ERROR("Time: %f, Delta Angle: %f", elapsed_time_.toSec(), w_3);
     for (size_t i = 0; i < 7; ++i) {
       if (i == 4) {
@@ -146,7 +158,13 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
         position_joint_handles_[i].setCommand(initial_pose_[i]);
       }
     }
-  } else if (elapsed_time_.toSec() <= 32.8){
+  } else if (elapsed_time_.toSec() < (28+1*3))
+  {
+    ROS_ERROR("Time: %f", elapsed_time_.toSec());
+    for (size_t i = 0; i < 7; ++i) {
+        position_joint_handles_[i].setCommand(initial_pose_[i]);
+    }
+  } else if (elapsed_time_.toSec() <= 32.8+1*3){
     ROS_ERROR("Time: %f, Delta Angle: %f", elapsed_time_.toSec(), w_4);
     for (size_t i = 0; i < 7; ++i) {
       if (i == 4) {
@@ -155,7 +173,14 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
         position_joint_handles_[i].setCommand(initial_pose_[i]);
       }
     }
-  } else if (elapsed_time_.toSec() <= 37.8){
+  }
+   else if (elapsed_time_.toSec() < (32.8+1*4))
+  {
+    ROS_ERROR("Time: %f", elapsed_time_.toSec());
+    for (size_t i = 0; i < 7; ++i) {
+        position_joint_handles_[i].setCommand(initial_pose_[i]);
+    }
+  } else if (elapsed_time_.toSec() <= 37.8+1*4){
     ROS_ERROR("Time: %f, Delta Angle: %f", elapsed_time_.toSec(), w_5);
     for (size_t i = 0; i < 7; ++i) {
       if (i == 4) {
@@ -164,7 +189,13 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
         position_joint_handles_[i].setCommand(initial_pose_[i]);
       }
     }
-  } else if (elapsed_time_.toSec() <= 42.6){
+  } else if (elapsed_time_.toSec() < (37.8+1*5))
+  {
+    ROS_ERROR("Time: %f", elapsed_time_.toSec());
+    for (size_t i = 0; i < 7; ++i) {
+        position_joint_handles_[i].setCommand(initial_pose_[i]);
+    }
+  } else if (elapsed_time_.toSec() <= 42.6+1*5){
     ROS_ERROR("Time: %f, Delta Angle: %f", elapsed_time_.toSec(), w_6);
     for (size_t i = 0; i < 7; ++i) {
       if (i == 4) {
@@ -291,14 +322,14 @@ void JointPositionExampleController::update(const ros::Time& /*time*/,
   //       position_joint_handles_[i].setCommand(initial_pose_[i]);
   //     }
   //   }
-  else if (elapsed_time_.toSec() < (42.6*3+0.5*60))
+  else if (elapsed_time_.toSec() < (42.6*3+60))
   {
     ROS_ERROR("Time: %f", elapsed_time_.toSec());
     for (size_t i = 0; i < 7; ++i) {
         position_joint_handles_[i].setCommand(initial_pose_[i]);
     }
   }
-  else if (elapsed_time_.toSec() == (42.6*3+0.5*60))
+  else if (elapsed_time_.toSec() == (47.6*3+60))
   {
     ROS_ERROR("Time: %f", elapsed_time_.toSec());
     for (size_t i = 0; i < 7; ++i) {
