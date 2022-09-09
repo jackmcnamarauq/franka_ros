@@ -27,6 +27,7 @@ class JointPositionExampleController : public controller_interface::MultiInterfa
   ros::Duration elapsed_time_;
   std::array<double, 7> initial_pose_{};
   std::array<double, 7> end_pose_;
+  double a;
 };
 
 }  // namespace franka_example_controllers
