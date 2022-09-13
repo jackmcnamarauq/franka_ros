@@ -20,6 +20,20 @@ class JointPositionExampleController : public controller_interface::MultiInterfa
   bool init(hardware_interface::RobotHW* robot_hardware, ros::NodeHandle& node_handle) override;
   void starting(const ros::Time&) override;
   void update(const ros::Time&, const ros::Duration& period) override;
+  double g_function(
+      const double t,
+      const double T,
+      const double x0,
+      const double xf,
+      const double v0,
+      const double vf,
+      const double a0,
+      const double af,
+      const double j0,
+      const double jf);
+  void update_arm(const double g, const double joint);
+  void update_arm_three(const double g);
+  void centre_arm(void);
 
  private:
   hardware_interface::PositionJointInterface* position_joint_interface_;
@@ -28,6 +42,7 @@ class JointPositionExampleController : public controller_interface::MultiInterfa
   std::array<double, 7> initial_pose_{};
   std::array<double, 7> end_pose_;
   double a;
+  double counter;
 };
 
 }  // namespace franka_example_controllers
