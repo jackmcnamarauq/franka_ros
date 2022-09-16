@@ -32,8 +32,8 @@ class JointPositionExampleController : public controller_interface::MultiInterfa
       const double j0,
       const double jf);
   void update_arm(const double g, const double joint);
-  void update_arm_three(const double g);
-  void centre_arm(void);
+  // void update_arm_three(const double g);
+  // void centre_arm(void);
 
  private:
   hardware_interface::PositionJointInterface* position_joint_interface_;
